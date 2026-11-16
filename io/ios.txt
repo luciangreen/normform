@@ -1,0 +1,402 @@
+normform: 200 inputs and outputs, from real runs (io/ios.pl has the same as Prolog facts).
+
+1. nf(and(a,and(a xor false,b)))
+   => nf([a,b],[[true,true]])
+2. same(and(implies(a,false),or(b,a)), not(and(c,a)))
+   => false
+3. nf_hash(b xor b xor and(b,a))
+   => 176776692
+4. to_expr(nf([],[[]]))
+   => true
+5. nf(false)
+   => nf([],[])
+6. same(and(false,true)xor(c xor b), not(not(and(false,true)xor(c xor b))))
+   => true
+7. nf_hash(or(c,c)xor c)
+   => 114745402
+8. to_expr(nf([b],[[false]]))
+   => not(b)
+9. nf(or(not(c),not(implies(b,c))))
+   => nf([c],[[false]])
+10. same(implies(b,and(false,false)), false)
+   => false
+11. nf_hash(or(not(a),false xor false))
+   => 280609792
+12. to_expr(nf([b],[[false]]))
+   => not(b)
+13. nf(and(not(b xor true),implies(and(true,c),and(c,c))))
+   => nf([b],[[true]])
+14. same(c, not(not(c)))
+   => true
+15. nf_hash(or(or(true,c),and(false,c)))
+   => 270323866
+16. to_expr(nf([a],[[true]]))
+   => a
+17. nf(and(and(a xor false,not(true)),true))
+   => nf([],[])
+18. same(c, implies(and(a,a),and(b,true)))
+   => false
+19. nf_hash(not(false xor c))
+   => 830430422
+20. to_expr(nf([],[]))
+   => false
+21. nf(implies(and(not(a),b xor c),not(implies(a,false))))
+   => nf([a,b,c],[[false,false,false],[false,true,true],[true,false,false],[true,false,true],[true,true,false],[true,true,true]])
+22. same(and(b,true)xor not(false), false)
+   => false
+23. nf_hash(or(c,a))
+   => 211355945
+24. to_expr(nf([],[[]]))
+   => true
+25. nf(not(false)xor(a xor and(a,a)))
+   => nf([],[[]])
+26. same(implies(c,false)xor not(false), and(not(c),b))
+   => false
+27. nf_hash(or(implies(b,c),or(b,true)))
+   => 270323866
+28. to_expr(nf([a],[[false]]))
+   => not(a)
+29. nf(or(implies(not(b),and(a,a)),a))
+   => nf([a,b],[[false,true],[true,false],[true,true]])
+30. same(not(not(true)), implies(not(c),implies(b,false)))
+   => false
+31. nf_hash(false)
+   => 114745402
+32. to_expr(nf([],[]))
+   => false
+33. nf(not(not(and(c,true))))
+   => nf([c],[[true]])
+34. same(or(and(false,b),false), not(not(or(and(false,b),false))))
+   => true
+35. nf_hash(b)
+   => 453682923
+36. to_expr(nf([],[[]]))
+   => true
+37. nf(and(and(c xor true,and(a,b)),or(a,c)xor not(b)))
+   => nf([a,b,c],[[true,true,false]])
+38. same(and(implies(false,b),not(b)), not(not(and(implies(false,b),not(b)))))
+   => true
+39. nf_hash(implies(implies(b,b),false))
+   => 114745402
+40. to_expr(nf([b,c],[[false,false],[true,true]]))
+   => or(and(not(b),not(c)),and(b,c))
+41. nf(implies(c xor or(c,true),and(c,c)xor implies(b,false)))
+   => nf([b,c],[[false,false],[false,true],[true,true]])
+42. same(or(implies(true,b),implies(c,true)), a)
+   => false
+43. nf_hash(a)
+   => 735137431
+44. to_expr(nf([],[[]]))
+   => true
+45. nf(and(b,and(true,a))xor or(a xor c,or(b,b)))
+   => nf([a,b,c],[[false,false,true],[false,true,false],[false,true,true],[true,false,false]])
+46. same(or(not(b),not(false)), not(false xor a))
+   => false
+47. nf_hash(and(or(a,b),implies(b,a)))
+   => 735137431
+48. to_expr(nf([a,c],[[false,false],[true,false],[true,true]]))
+   => or(and(not(a),not(c)),or(and(a,not(c)),and(a,c)))
+49. nf(not(or(or(true,b),a xor c)))
+   => nf([],[])
+50. same(or(or(false,a),or(true,false)), not(not(or(or(false,a),or(true,false)))))
+   => true
+51. nf_hash(not(and(c,a)))
+   => 39395302
+52. to_expr(nf([a,b],[[false,true],[true,false],[true,true]]))
+   => or(and(not(a),b),or(and(a,not(b)),and(a,b)))
+53. nf(b)
+   => nf([b],[[true]])
+54. same(or(a,b)xor(true xor true), not(not(or(a,b)xor(true xor true))))
+   => true
+55. nf_hash(false)
+   => 114745402
+56. to_expr(nf([],[[]]))
+   => true
+57. nf(not(implies(b,and(c,true))))
+   => nf([b,c],[[true,false]])
+58. same(a xor c xor false, or(false,not(b)))
+   => false
+59. nf_hash(and(or(b,b),true xor c))
+   => 619871883
+60. to_expr(nf([],[]))
+   => false
+61. nf(a xor c xor implies(true,b)xor(implies(a,true)xor or(b,b)))
+   => nf([a,c],[[false,false],[true,true]])
+62. same(implies(not(true),or(true,b)), not(not(implies(not(true),or(true,b)))))
+   => true
+63. nf_hash(and(implies(c,a),c))
+   => 624018612
+64. to_expr(nf([],[]))
+   => false
+65. nf(or(false xor b xor or(false,c),a))
+   => nf([a,b,c],[[false,false,true],[false,true,false],[true,false,false],[true,false,true],[true,true,false],[true,true,true]])
+66. same(implies(or(true,false),or(a,b)), not(not(implies(or(true,false),or(a,b)))))
+   => true
+67. nf_hash(and(c xor a,implies(b,true)))
+   => 455561436
+68. to_expr(nf([],[[]]))
+   => true
+69. nf(false)
+   => nf([],[])
+70. same(implies(implies(false,false),or(b,false)), a)
+   => false
+71. nf_hash(implies(a,and(c,b)))
+   => 508675964
+72. to_expr(nf([],[]))
+   => false
+73. nf(implies(implies(c,b)xor and(false,c),not(a xor b)))
+   => nf([a,b,c],[[false,false,false],[false,false,true],[true,false,true],[true,true,false],[true,true,true]])
+74. same(or(true xor c,and(a,b)), or(implies(true,b),false xor false))
+   => false
+75. nf_hash(not(implies(true,b)))
+   => 555520107
+76. to_expr(nf([a],[[true]]))
+   => a
+77. nf(b xor and(and(b,c),true xor false))
+   => nf([b,c],[[true,false]])
+78. same(implies(and(false,false),b xor b), implies(a,and(c,true)))
+   => false
+79. nf_hash(or(and(true,false),implies(true,false)))
+   => 114745402
+80. to_expr(nf([c],[[true]]))
+   => c
+81. nf(not(or(and(false,false),implies(b,c))))
+   => nf([b,c],[[true,false]])
+82. same(or(or(true,b),not(c)), c xor (true xor c))
+   => true
+83. nf_hash(implies(and(b,true),not(b)))
+   => 555520107
+84. to_expr(nf([c],[[true]]))
+   => c
+85. nf(implies(implies(implies(false,a),b),true))
+   => nf([],[[]])
+86. same(or(not(true),false xor a), or(b,b)xor and(false,false))
+   => false
+87. nf_hash(and(not(true),or(c,c)))
+   => 114745402
+88. to_expr(nf([a,c],[[false,true],[true,false],[true,true]]))
+   => or(and(not(a),c),or(and(a,not(c)),and(a,c)))
+89. nf(or(a,true)xor or(false xor c,and(c,true)))
+   => nf([c],[[false]])
+90. same(not(c)xor or(a,c), or(implies(false,b),a xor true))
+   => false
+91. nf_hash(or(not(a),implies(c,a)))
+   => 270323866
+92. to_expr(nf([c],[[false]]))
+   => not(c)
+93. nf(implies(implies(implies(false,c),and(true,false)),and(a xor b,a xor true)))
+   => nf([],[[]])
+94. same(implies(a,a), not(c xor true))
+   => false
+95. nf_hash(not(true))
+   => 114745402
+96. to_expr(nf([],[[]]))
+   => true
+97. nf(b)
+   => nf([b],[[true]])
+98. same(implies(and(a,c),c xor b), b)
+   => false
+99. nf_hash(or(not(a),implies(true,true)))
+   => 270323866
+100. to_expr(nf([a,c],[[false,false],[false,true],[true,true]]))
+   => or(and(not(a),not(c)),or(and(not(a),c),and(a,c)))
+101. nf(and(or(b,implies(a,false)),and(and(false,true),and(true,false))))
+   => nf([],[])
+102. same(and(and(a,false),and(b,c)), true xor or(a,true))
+   => true
+103. nf_hash(not(or(b,a)))
+   => 986261997
+104. to_expr(nf([],[[]]))
+   => true
+105. nf(not(b)xor true)
+   => nf([b],[[true]])
+106. same(false, not(not(false)))
+   => true
+107. nf_hash(c)
+   => 172228415
+108. to_expr(nf([],[[]]))
+   => true
+109. nf(b)
+   => nf([b],[[true]])
+110. same(implies(and(true,true),c xor false), or(c,b)xor not(c))
+   => false
+111. nf_hash(not(false xor a))
+   => 280609792
+112. to_expr(nf([b],[[true]]))
+   => b
+113. nf(implies(implies(implies(true,false),implies(a,c)),or(false xor true,not(a))))
+   => nf([],[[]])
+114. same(a, implies(implies(c,c),false))
+   => false
+115. nf_hash(not(implies(true,a)))
+   => 280609792
+116. to_expr(nf([],[[]]))
+   => true
+117. nf(implies(not(and(true,a)),false))
+   => nf([a],[[true]])
+118. same(or(or(false,false),b), and(c,c)xor not(true))
+   => false
+119. nf_hash(not(and(true,a)))
+   => 280609792
+120. to_expr(nf([],[]))
+   => false
+121. nf(true)
+   => nf([],[[]])
+122. same(and(not(b),false), or(and(a,false),a))
+   => false
+123. nf_hash(implies(true,a)xor(b xor c))
+   => 129346396
+124. to_expr(nf([],[[]]))
+   => true
+125. nf(implies(and(true,a),not(a))xor(false xor true))
+   => nf([a],[[true]])
+126. same(or(or(c,c),or(b,true)), and(false,c)xor or(c,false))
+   => false
+127. nf_hash(true xor true)
+   => 114745402
+128. to_expr(nf([a],[[false]]))
+   => not(a)
+129. nf(implies(implies(b,implies(a,c)),implies(implies(b,c),implies(c,false))))
+   => nf([c],[[false]])
+130. same(and(implies(true,true),true), a)
+   => false
+131. nf_hash(implies(not(true),and(b,b)))
+   => 270323866
+132. to_expr(nf([c],[[false]]))
+   => not(c)
+133. nf(not(implies(and(b,c),and(c,true))))
+   => nf([],[])
+134. same(b, b)
+   => true
+135. nf_hash(implies(and(true,c),or(true,false)))
+   => 270323866
+136. to_expr(nf([],[]))
+   => false
+137. nf(implies(implies(a xor c,or(b,true)),and(not(a),a xor false)))
+   => nf([],[])
+138. same(and(implies(b,b),or(b,false)), not(and(a,a)))
+   => false
+139. nf_hash(a)
+   => 735137431
+140. to_expr(nf([b],[[true]]))
+   => b
+141. nf(implies(and(b xor false,or(false,false)),not(implies(a,true))))
+   => nf([],[[]])
+142. same(a, or(implies(false,false),and(b,false)))
+   => false
+143. nf_hash(implies(not(a),not(false)))
+   => 270323866
+144. to_expr(nf([a,b,c],[[false,false,false],[false,false,true],[false,true,false],[false,true,true],[true,false,true],[true,true,false],[true,true,true]]))
+   => or(and(not(a),and(not(b),not(c))),or(and(not(a),and(not(b),c)),or(and(not(a),and(b,not(c))),or(and(not(a),and(b,c)),or(and(a,and(not(b),c)),or(and(a,and(b,not(c))),and(a,and(b,c))))))))
+145. nf(not(or(or(false,c),b xor c)))
+   => nf([b,c],[[false,false]])
+146. same(false, implies(false xor true,true))
+   => false
+147. nf_hash(a)
+   => 735137431
+148. to_expr(nf([],[[]]))
+   => true
+149. nf(implies(or(or(true,false),implies(a,false)),true))
+   => nf([],[[]])
+150. same(or(a xor false,and(true,true)), not(not(or(a xor false,and(true,true)))))
+   => true
+151. nf_hash(implies(c,or(false,c)))
+   => 270323866
+152. to_expr(nf([b],[[false]]))
+   => not(b)
+153. nf(or(not(c)xor(c xor true),not(a)xor(false xor false)))
+   => nf([a],[[false]])
+154. same(a xor (a xor b), not(not(a xor (a xor b))))
+   => true
+155. nf_hash(or(false,c))
+   => 172228415
+156. to_expr(nf([b,c],[[true,true]]))
+   => and(b,c)
+157. nf(or(not(a),false)xor and(c xor true,c xor b))
+   => nf([a,b,c],[[false,false,false],[false,false,true],[false,true,true],[true,true,false]])
+158. same(implies(true,a)xor not(true), and(or(false,c),a xor false))
+   => false
+159. nf_hash(b)
+   => 453682923
+160. to_expr(nf([],[]))
+   => false
+161. nf(b xor implies(and(false,a),implies(a,c)))
+   => nf([b],[[false]])
+162. same(or(not(false),implies(b,c)), true xor and(false,c))
+   => true
+163. nf_hash(not(a xor b))
+   => 585277261
+164. to_expr(nf([a,c],[[false,false],[true,false],[true,true]]))
+   => or(and(not(a),not(c)),or(and(a,not(c)),and(a,c)))
+165. nf(c xor not(b)xor(and(false,true)xor(c xor b)))
+   => nf([],[[]])
+166. same(implies(b,false)xor(true xor false), not(not(implies(b,false)xor(true xor false))))
+   => true
+167. nf_hash(and(true xor true,a xor true))
+   => 114745402
+168. to_expr(nf([],[[]]))
+   => true
+169. nf(and(not(or(true,true)),or(implies(b,a),false)))
+   => nf([],[])
+170. same(a, implies(or(true,false),true xor a))
+   => false
+171. nf_hash(not(a)xor and(b,a))
+   => 514334005
+172. to_expr(nf([],[]))
+   => false
+173. nf(a)
+   => nf([a],[[true]])
+174. same(b, or(a,not(c)))
+   => false
+175. nf_hash(implies(not(a),implies(a,b)))
+   => 270323866
+176. to_expr(nf([],[[]]))
+   => true
+177. nf(and(true,or(and(false,a),false)))
+   => nf([],[])
+178. same(c, not(not(c)))
+   => true
+179. nf_hash(not(false)xor false)
+   => 270323866
+180. to_expr(nf([],[[]]))
+   => true
+181. nf(and(a,not(or(true,false))))
+   => nf([],[])
+182. same(not(implies(true,b)), not(not(not(implies(true,b)))))
+   => true
+183. nf_hash(not(or(a,c)))
+   => 785744107
+184. to_expr(nf([a,b],[[false,true],[true,false]]))
+   => or(and(not(a),b),and(a,not(b)))
+185. nf(or(implies(c,b)xor implies(b,b),or(c xor true,a xor c)))
+   => nf([a,b,c],[[false,false,false],[false,false,true],[false,true,false],[false,true,true],[true,false,false],[true,false,true],[true,true,false]])
+186. same(a, not(not(a)))
+   => true
+187. nf_hash(c)
+   => 172228415
+188. to_expr(nf([],[[]]))
+   => true
+189. nf(implies(implies(c,a xor a),or(or(true,a),true xor false)))
+   => nf([],[[]])
+190. same(b, or(and(false,false),and(true,true)))
+   => false
+191. nf_hash(not(and(false,false)))
+   => 270323866
+192. to_expr(nf([],[[]]))
+   => true
+193. nf(implies(false xor implies(a,b),b))
+   => nf([a,b],[[false,true],[true,false],[true,true]])
+194. same(or(or(true,false),or(b,false)), not(implies(c,true)))
+   => false
+195. nf_hash(not(and(true,c)))
+   => 830430422
+196. to_expr(nf([],[]))
+   => false
+197. nf(or(c xor b xor or(b,false),b xor a xor not(false)))
+   => nf([a,b,c],[[false,false,false],[false,false,true],[false,true,true],[true,false,true],[true,true,false],[true,true,true]])
+198. same(or(or(a,true),true), not(not(or(or(a,true),true))))
+   => true
+199. nf_hash(implies(b,a xor false))
+   => 165949170
+200. to_expr(nf([],[[]]))
+   => true
